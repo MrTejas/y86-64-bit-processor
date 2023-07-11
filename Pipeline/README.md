@@ -1,4 +1,4 @@
-# x86-64 processor in Verilog
+# y86-64 processor in Verilog
 
 We implement a pipelined version of the x86-64 processor with multiple features such as countering data dependencies using data forwarding and bubble/stall methods. The pipelined version of this processor consist of the following files:-
 * `fetch.v` consisting of fetch module 
