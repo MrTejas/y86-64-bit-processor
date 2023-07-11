@@ -1,47 +1,147 @@
-# Intro to Processor Architecture - Project (Spring 2023)
 
-## 1.Overall Goal (Total Marks - 100)
+# y86 64-bit Processor in Verilog
 
-Each group (2 students) must develop a processor architecture design based on the Y86 ISA using Verilog. The design
-should be thoroughly tested to satisfy all the specification requirements using simulations. The project submission
-must include the following
+The project involves the implementation of Y86-64 processor architecture design using Verilog. The final goal is to achieve a 5 state pipelined implementation of the processor. This report includes the sequential and the pipelined implementation of the Y86-64 processor which contains the fetch, decode - write back , execute, memory and the PC update blocks, their testbenches and the combined testbench along with data forwarding and support for eliminating pipeline hazards. The following 2 designs are implemented :-
 
-- A report describing the design details of the various stages of the processor architecture, the supported features
-(including simulation snapshots of the features supported) and the challenges encountered. (Marks-15)
-- Verilog code for processor design and testbench
+ 1. **Sequential :** The sequential implementation of the Y86-64 processor works with fetch, decode, execute, memory, writeback and PC update. In this implementation, only one instruction will be there in whole architecture in one clock cycle. 
+![](/images/pp1,png)
+ 2. **5-stage Pipelined :** The pipelined implementation of the Y86-64 works the same way as that of the sequential implementation with the modules being same but with inclusion of the pipelined registers, slight change in the fetch and decode blocks, addition of support for data forwarding and PC prediction for improving the performance and the addition of the pipeline control logic for eliminating pipeline hazards. This type implementation increases throughput but increases latency which is a trade-off.
 
-## 2.Specifications
+# Files
 
-The required specifications in the processor design are as follows:
+StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
 
-- A bare minimum processor architecture must implement a sequential design as discussed in Section 4.3 of
-textbook. (Marks-25)
-- A full fledged processor architecture implementation with 5 stage pipeline as discussed in Sections 4.4 and 4.5
-of textbook, which includes support for eliminating pipeline hazards. (Marks-40)
+## Create files and folders
 
-Your submission should at least have the first design mentioned above in order to get minimal marks. However, your
-goal should be to submit a design with pipelined architecture so that you score maximum marks.
+The file explorer is accessible using the button in left corner of the navigation bar. You can create a new file by clicking the **New file** button in the file explorer. You can also create folders by clicking the **New folder** button.
 
-### Important points to notice:
-- Both the above implementations must execute all the instructions from Y86 ISA except call and retinstructions
-to get the above mentioned marks.
-- Additional marks if you also execute call and ret instructions. (Marks-10)
+## Switch to another file
 
-## 3.Design Approach
-The design approach should be modular, i.e., each stage has to be coded as separate modules and tested independently
-in order to help the integration without too many issues.
+All your files and folders are presented as a tree in the file explorer. You can switch from one to another by clicking a file in the tree.
+
+## Rename a file
+
+You can rename the current file by clicking the file name in the navigation bar or by clicking the **Rename** button in the file explorer.
+
+## Delete a file
+
+You can delete the current file by clicking the **Remove** button in the file explorer. The file will be moved into the **Trash** folder and automatically deleted after 7 days of inactivity.
+
+## Export a file
+
+You can export the current file by clicking **Export to disk** in the menu. You can choose to export the file as plain Markdown, as HTML using a Handlebars template or as a PDF.
 
 
-## 4.Targets and Evaluation
+# Synchronization
 
-Each group will be evaluated twice during the project - firstly on Feb 20. (Marks-10)
+Synchronization is one of the biggest features of StackEdit. It enables you to synchronize any file in your workspace with other files stored in your **Google Drive**, your **Dropbox** and your **GitHub** accounts. This allows you to keep writing on other devices, collaborate with people you share the file with, integrate easily into your workflow... The synchronization mechanism takes place every minute in the background, downloading, merging, and uploading file modifications.
 
-The final evaluation will happen in the 1st week of March (dates will be announced later).
+There are two types of synchronization and they can complement each other:
 
-## 5.Suggestions for Design Verification
+- The workspace synchronization will sync all your files, folders and settings automatically. This will allow you to fetch your workspace on any other device.
+	> To start syncing your workspace, just sign in with Google in the menu.
 
-Please adhere to the following verification approaches as much as possible.
-- You can individually test each stage/module for its intended functionality by creating module specific test
-inputs.
-- Please write an assembly program for any algorithm (e.g., sorting algorithm) using Y86 ISA and the corresponding encoded instructions and use the encoded instructions to test your integrated design.
-- If possible, you can also think of an automated testbench that will help you to verify your design efficiently, i.e., automatically verify the state of the processor and memory after execution of each instruction in the program.
+- The file synchronization will keep one file of the workspace synced with one or multiple files in **Google Drive**, **Dropbox** or **GitHub**.
+	> Before starting to sync files, you must link an account in the **Synchronize** sub-menu.
+
+## Open a file
+
+You can open a file from **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Open from**. Once opened in the workspace, any modification in the file will be automatically synced.
+
+## Save a file
+
+You can save any file of the workspace to **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Save on**. Even if a file in the workspace is already synced, you can save it to another location. StackEdit can sync one file with multiple locations and accounts.
+
+## Synchronize a file
+
+Once your file is linked to a synchronized location, StackEdit will periodically synchronize it by downloading/uploading any modification. A merge will be performed if necessary and conflicts will be resolved.
+
+If you just have modified your file and you want to force syncing, click the **Synchronize now** button in the navigation bar.
+
+> **Note:** The **Synchronize now** button is disabled if you have no file to synchronize.
+
+## Manage file synchronization
+
+Since one file can be synced with multiple locations, you can list and manage synchronized locations by clicking **File synchronization** in the **Synchronize** sub-menu. This allows you to list and remove synchronized locations that are linked to your file.
+
+
+# Publication
+
+Publishing in StackEdit makes it simple for you to publish online your files. Once you're happy with a file, you can publish it to different hosting platforms like **Blogger**, **Dropbox**, **Gist**, **GitHub**, **Google Drive**, **WordPress** and **Zendesk**. With [Handlebars templates](http://handlebarsjs.com/), you have full control over what you export.
+
+> Before starting to publish, you must link an account in the **Publish** sub-menu.
+
+## Publish a File
+
+You can publish your file by opening the **Publish** sub-menu and by clicking **Publish to**. For some locations, you can choose between the following formats:
+
+- Markdown: publish the Markdown text on a website that can interpret it (**GitHub** for instance),
+- HTML: publish the file converted to HTML via a Handlebars template (on a blog for example).
+
+## Update a publication
+
+After publishing, StackEdit keeps your file linked to that publication which makes it easy for you to re-publish it. Once you have modified your file and you want to update your publication, click on the **Publish now** button in the navigation bar.
+
+> **Note:** The **Publish now** button is disabled if your file has not been published yet.
+
+## Manage file publication
+
+Since one file can be published to multiple locations, you can list and manage publish locations by clicking **File publication** in the **Publish** sub-menu. This allows you to list and remove publication locations that are linked to your file.
+
+
+# Markdown extensions
+
+StackEdit extends the standard Markdown syntax by adding extra **Markdown extensions**, providing you with some nice features.
+
+> **ProTip:** You can disable any **Markdown extension** in the **File properties** dialog.
+
+
+## SmartyPants
+
+SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
+
+|                |ASCII                          |HTML                         |
+|----------------|-------------------------------|-----------------------------|
+|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
+|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
+|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
+
+
+## KaTeX
+
+You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
+
+The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
+
+$$
+\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
+$$
+
+> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
+
+
+## UML diagrams
+
+You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
+
+```mermaid
+sequenceDiagram
+Alice ->> Bob: Hello Bob, how are you?
+Bob-->>John: How about you John?
+Bob--x Alice: I am good thanks!
+Bob-x John: I am good thanks!
+Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+
+Bob-->Alice: Checking with John...
+Alice->John: Yes... John, how are you?
+```
+
+And this will produce a flow chart:
+
+```mermaid
+graph LR
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
+```
